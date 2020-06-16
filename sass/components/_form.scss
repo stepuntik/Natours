@@ -1,0 +1,109 @@
+.form {
+
+    &__group:not(:last-child) {
+        margin-bottom: 2rem;;
+    }
+
+    &__input {
+        font-size: 1.5rem;
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent;
+        width: 90%;
+        display: block;
+        transition: all .3s;
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+
+        &:focus {
+            outline: none; //for accessibility you can't just leave it like that, so we add what's below
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: 3px solid $color-primary;
+
+            &:invalid { //cool pseudo-class used for built-in html input properties like name and email
+                border-bottom: 3px solid $color-secondary-dark;
+            }
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-2;
+        }
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block; //otherwise margin properties won't work on the text element
+        transition: all .3s;
+    }
+
+    &__input:placeholder-shown + &__label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    } 
+    // ~ is a general sibling selector
+    // + is an adjacent sibling selector - 
+    //siblings - html elements on the same level
+    //adjacent sibling - the one that comes right after the element that we select in the 1st place
+    //if someone is in between the necessary siblings - we will use + selector.
+    //if we use +, the sibling we change should be after the first one
+
+    &__radio-group {
+        width: 49%;
+        display: inline-block; //won't create line breaks and so will be placed side-by-side
+
+        @include respond(tab-port) {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__radio-input { //making default rbts invisible
+        display: none;
+    }
+
+    &__radio-label {
+        font-size: $default-font-size;
+        cursor: pointer; //changes cursor to hand
+        position: relative; //enables child's postition:absolute property
+        padding-left: 4rem;
+    }
+
+    &__radio-button {
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block; //otherwise circles are squeezed. also, display:block didn't work, it pushed them by one row down, under the original radio buttons.
+        position: absolute;
+        left: 0;
+        top: -.5rem;
+
+        &::after {
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            
+            @include center-horizontal-vertical; //parent's posititon is also absolute, but that's okay. it doesn't always have to be relative. it just has to be specified.
+
+            background-color: $color-primary;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+    }
+
+    &__radio-input:checked ~ &__radio-label &__radio-button:after {
+        opacity: 1;
+    }
+}

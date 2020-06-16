@@ -1,0 +1,43 @@
+.header {
+    height: 95vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8), 
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/hero.jpg);
+    background-size: cover; //it will always try to fit the img to the viewport
+    background-position: top; //the img will always stay at the top of the container when changing the window size
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    //bennettfeely.com/clippy - a wonderful source for pre-set shapes codes
+    position: relative; //done so the child .logo-box can be moved around with its position absolute. It's a reference from which top and left start to count
+    
+    @include respond(tab-port) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    
+    &__logo {
+        height: 3.5rem; //width rules will apply automatically
+    }
+    
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%); //used because top and left properties don't place to parent's center the middle point of child element, but rather its X and Y 0 position (top-left corner) to its center
+        text-align: center;
+    }
+} //we used & to replace the ".header" part of the classes. we simpy nested them inside, thanks to scss.

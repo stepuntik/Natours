@@ -1,0 +1,103 @@
+.btn {
+    &, //added this later to apply rules to the 'Next step' submit button (we added border and cursor properties)
+    &:link, 
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block; //we use it if we need to add padding, height or width to element
+        //as an inline-block it is still treated as a text, so centering it can be easily done with text-align property
+        border-radius: 10rem;
+        transition: all .2s;
+        // backface-visibility: hidden;
+        position: relative; //otherwise :after 'position: absolute' will refer to .text-box's display property
+        font-size: $default-font-size;
+
+        //Change for the <button> element
+        border: none;
+        cursor: pointer;
+
+
+    }
+
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active,
+    &:focus {
+        outline: none; //removed the frame around the button. Had to create &:focus pseudo-class first.
+        transform: translateY(-.1rem) translateZ(0);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+        
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+        
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+    
+    &::after {
+        content: ""; 
+        //always has to be present, even if empty value, otherwise won't work
+        display: inline-block; 
+        //also a must-have. We chose inline-block because our initital .btn:link is also an inline-block
+        height: 100%;
+        width: 100%; //sizewise acts like a child of the btn
+        border-radius: 10rem;
+        position: absolute; //sticks out below otherwise
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards; //automatically applies the style of keyframes 0% before the animation starts. btn is not visible when page is just opened
+    }
+}
+
+.btn-text {
+    
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black,.15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+        transform: translateY(0);
+    }
+}

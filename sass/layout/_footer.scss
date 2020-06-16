@@ -1,0 +1,89 @@
+.footer {
+    background-color: $color-grey-dark-3;
+    padding: 10rem 0;
+    font-size: 1.4rem;
+    color: $color-grey-light-1;
+
+    @include respond(tab-port) {
+        padding: 8rem 0;
+        height: 85vh;
+    }
+
+    &__logo-box {
+        text-align: center;
+        margin-bottom: 8rem;
+
+        @include respond(tab-port) {
+            margin-bottom: 4rem;
+        }
+    }
+
+    &__logo {
+        width: 15rem;
+        height: auto;
+    }
+
+    &__navigation {
+        border-top: 1px solid $color-grey-dark;
+        padding-top: 2rem;
+        display: inline-block; //so the top line is the same with as all <li>. it works because inl-blck doesn't occupy 100% of its width. It takes only as much width as the content in it needs
+
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    &__list {
+        list-style: none;
+    }
+
+    #footer-list {
+        @include respond(tab-port) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__item {
+        display: inline-block; //we want them side-by-side, but NOT as float elements. So it's way easier this way
+
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            color: $color-grey-light-1;
+            background-color: $color-grey-dark-3;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: all .2s;
+        }
+
+        &:hover,
+        &:active {
+            color: $color-primary;
+            box-shadow: 0 1rem 2rem rgba($color-black, .4);
+            transform: rotate(5deg) scale(1.3);
+
+        }
+    }
+
+    &__copyright {
+        border-top: 1px solid $color-grey-dark;
+        padding-top: 2rem;
+        display: inline-block;
+        width: 80%;
+        float: right; //we pushed to block to the right side to make it look symmetrical with the <ul> block to the logo above
+
+        @include respond(tab-port) {
+            width: 100%;
+            float: none;
+            text-align: center;
+            line-height: 2;
+        }
+    }
+}
