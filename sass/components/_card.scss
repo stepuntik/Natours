@@ -14,6 +14,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        -webkit-backface-visibility: hidden;
         backface-visibility: hidden; //removed backside visibility
         border-radius: 3px;
         overflow: hidden; //used to cancel images's overlapping of the card
@@ -53,20 +54,97 @@
     &__picture {
         background-size: cover; //we did this outside --1 so it applies to all 3 images
         height: 23rem;
-        background-blend-mode: screen; //we mixed the gradient and the image
+        // background-blend-mode: screen; //we mixed the gradient and the image
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 
         &--1 {
-            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+            background-image:   linear-gradient(
+                                to right bottom,
+                                rgba($color-secondary-light, .7), 
+                                rgba($color-secondary-dark, .7)), 
+                                url(../img/nat-5-small.jpg);
+
+            @media only screen and  (min-resolution: 192dpi) and (min-width: 37.5em),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+            only screen and (min-width: 125em) {
+                        background-image:   linear-gradient(
+                                            to right bottom,
+                                            rgba($color-secondary-light, 0.7), 
+                                            rgba($color-secondary-dark, 0.7)), 
+                                            url(../img/nat-5.jpg);
+                    }
         }
 
         &--2 {
-            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+            background-image:   linear-gradient(
+                                to right bottom,
+                                rgba($color-primary-light, .7), 
+                                rgba($color-primary-dark, .7)), 
+                                url(../img/nat-6-small.jpg);
+
+            @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+            only screen and (min-width: 125em) {
+                        background-image:   linear-gradient(
+                                            to right bottom,
+                                            rgba($color-primary-light, 0.7), 
+                                            rgba($color-primary-dark, 0.7)), 
+                                            url(../img/nat-6.jpg);
+                    }
         }
 
         &--3 {
-            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-6.jpg);
+            background-image:   linear-gradient(
+                                to right bottom,
+                                rgba($color-tertiary-light, .7), 
+                                rgba($color-tertiary-dark, .7)), 
+                                url(../img/nat-7-small.jpg);
+
+            @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+            only screen and (min-width: 125em) {
+                        background-image:   linear-gradient(
+                                            to right bottom,
+                                            rgba($color-tertiary-light, 0.7), 
+                                            rgba($color-tertiary-dark, 0.7)), 
+                                            url(../img/nat-7.jpg);
+                    }
+        }
+
+        @supports (background-blend-mode: screen) {
+            
+            background-blend-mode: screen;
+            
+            &--1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5-small.jpg);
+    
+                @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+                only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+                only screen and (min-width: 125em) {
+                    background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+                }
+            }
+
+            &--2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6-small.jpg);
+    
+                @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+                only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+                only screen and (min-width: 125em) {
+                    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+                }
+            }
+    
+            &--3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7-small.jpg);
+    
+                @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+                only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+                only screen and (min-width: 125em) {
+                    background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+                }
+            }
         }
     }
 
@@ -150,7 +228,10 @@
         font-weight: 100;
     }
 
-    @include respond(tab-port) {
+    // @include respond(tab-port) {
+
+    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+        //we added hover rule so that the page displays the 'book now' btn if the screen is small than this, or whenever we use device which uses touch (has no hover). Opposite way - hover: hover
         height: auto;
         border-radius: 3px;
         background-color: $color-white;

@@ -6,12 +6,16 @@
     width: 100%;
     z-index: -1;
     opacity: .15;
-    //overflow: hidden; - didn't have to use it. video already fit perfectily 
+    overflow: hidden; //- didn't have to use it. video already fit perfectily 
 
     &__content {
         height: 100%;
-        width: 100%;
+        width: auto;
+        
+        @supports (object-fit: cover) {
         object-fit: cover; // makes video (or picture!) fill the entire parent while still maintaining its aspect ration
+        width: 100%;
+        }
     }
 
 }

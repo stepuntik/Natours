@@ -23,16 +23,25 @@
         width: 15rem; //otherwise 'shape-outside' property won't work
         height: 15rem; //otherwise 'shape-outside' property won't work
         float: left; //otherwise 'shape-outside' property won't work
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
+        
     //50% - of diameter of the circle (7.5rem)
     //at 50% 50% - center horizontally and vertically
-        clip-path: circle(50% at 50% 50%);
         transform: translateX(-3rem) skewX(12deg); //when we have float property and want to move the element, don't mess with margins, use 'transform translate'
         position: relative;
+        overflow: hidden; //hides outside part of image for old browsers
+        border-radius: 50%; //for old browsers
+
+        @supports (clip-path: polygon(0, 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+            border-radius: none;
+        }
+
 
         @include respond(phone) {
-            transform: translateX(-3rem) skewX(0);
+            transform: translateX(-1rem) skewX(0);
         }
     }
 

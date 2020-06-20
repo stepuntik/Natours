@@ -14,11 +14,21 @@
         to right bottom,
         rgba($color-primary-light, 0.8), 
         rgba($color-primary-dark, 0.8)), 
-        url(../img/nat-4.jpg);
+        url(../img/nat-4-small.jpg);
     background-size: cover; //so it nicely covers the entire section
 
     transform: skewY(-7deg);
     margin-top: -10rem;
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+    only screen and (min-width: 125em) {
+        background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8), 
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/nat-4.jpg);
+    }
     
     & > * {
         transform: skewY(7deg);
@@ -57,30 +67,29 @@
 }
 
 .book {
-    background-image: linear-gradient(105deg, 
+    background-image:   linear-gradient(105deg, 
                         rgba($color-white, .9) 0%,
                         rgba($color-white, .9) 50%, 
                         transparent 50%), 
-                url(../img/nat-10.jpg);
-
+                        url(../img/nat-10-small.jpg);
     background-size: cover; //or you can use 100%
     border-radius: 3px; //HEY! create a variable for border-radius!
     box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
 
     @include respond(tab-land) {
-        background-image: linear-gradient(105deg, 
-                        rgba($color-white, .9) 0%,
-                        rgba($color-white, .9) 65%, 
-                        transparent 65%), 
-                url(../img/nat-10.jpg);
+        background-image:   linear-gradient(105deg, 
+                            rgba($color-white, .9) 0%,
+                            rgba($color-white, .9) 65%, 
+                            transparent 65%), 
+                            url(../img/nat-10-small.jpg);
         background-size: cover;
     }
 
     @include respond(tab-port) {
-        background-image: linear-gradient(to right, 
-                        rgba($color-white, .9) 0%,
-                        rgba($color-white, .9) 100%), 
-                url(../img/nat-10.jpg);
+        background-image:   linear-gradient(to right, 
+                            rgba($color-white, .9) 0%,
+                            rgba($color-white, .9) 100%), 
+                            url(../img/nat-10-small.jpg);
     }
 
     &__form {
@@ -95,4 +104,14 @@
             width: 100%;
         }
     }
+
+    // @media (min-resolution: 192dpi) and (min-width: 37.5em), 
+    //(-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    //(min-width: 125em) {
+    //     background-image:   linear-gradient(105deg, 
+    //                         rgba($color-white, .9) 0%,
+    //                         rgba($color-white, .9) 50%, 
+    //                         transparent 50%), 
+    //                         url(../img/nat-10.jpg);
+    // }
 }

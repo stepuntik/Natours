@@ -1,17 +1,35 @@
 .header {
-    height: 95vh;
+    height: 85vh;
     background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.8), 
         rgba($color-primary-dark, 0.8)), 
-        url(../img/hero.jpg);
+        url(../img/hero-small.jpg);
     background-size: cover; //it will always try to fit the img to the viewport
     background-position: top; //the img will always stay at the top of the container when changing the window size
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     //bennettfeely.com/clippy - a wonderful source for pre-set shapes codes
     position: relative; //done so the child .logo-box can be moved around with its position absolute. It's a reference from which top and left start to count
-    
+
+    @supports (clip-path: polygon(0, 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh;
+    }
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em) { 
+    //high-resolution display like Apple Retina. min-width is used so that <600px phone screens use 1200px small hero img, not large 2000px. Phones have 2x DPI screens, 600x2=1200. webkit is used for Safari browsers.
+    //also, "," coma in the rule serves as an "or"
+        background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8), 
+        rgba($color-primary-dark, 0.8)), 
+        url(../img/hero.jpg);
+    }
+
     @include respond(tab-port) {
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);

@@ -49,12 +49,16 @@ body {
     font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 700;
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
     display: inline-block;
-    -webkit-background-clip: text; //clips the background exactly to where the text sits
-    color: transparent; //we made text invisible, and now we see our nice gradient background color
+    color: $color-primary;
     letter-spacing: 2px; //add lil space between the letters
     transition: all .2s;
+
+    @supports (-webkit-background-clip: text) {
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+        -webkit-background-clip: text; //clips the background exactly to where the text sits
+        color: transparent; //we made text invisible, and now we see our nice gradient background color
+    }
 
     @include respond(tab-port) {
         font-size: 3rem;
