@@ -1,5 +1,7 @@
 # Natours Landing Page
 
+## This project is live and accessible on GitHub Pages! Explore it [here](https://stepuntik.github.io/Natours/)!
+
 ![Natours Landing Page](https://imgpile.com/images/Gv8Zar.png)
 
 ## Overview
