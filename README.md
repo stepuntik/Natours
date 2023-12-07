@@ -1,6 +1,6 @@
 # Natours Landing Page
 
-![Natours Landing Page](./img/natours-screenshot.jpg)
+![Natours Landing Page](https://imgpile.com/images/Gv8Zar.png)
 
 ## Overview
 
