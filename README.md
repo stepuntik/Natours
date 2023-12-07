@@ -55,6 +55,10 @@ Natours/
 
 Contributions are welcome! If you'd like to enhance the project or fix any issues, please fork the repository and submit a pull request.
 
+## Acknowledgements
+
+This project is inspired by Jonas Schmedtmann's Udemy course on CSS and SASS.
+
 ## License
 
-This project is licensed under the [ISC License](./LICENSE).
+Licensed under the [ISC License](./LICENSE).
